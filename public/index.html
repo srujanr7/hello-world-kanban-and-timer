@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hello World · Projects & Timer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">👋 Hello, World!</div>
+    <div class="clock">
+      <div id="clock-time">--:--:--</div>
+      <div id="clock-date">&nbsp;</div>
+    </div>
+  </header>
+
+  <div class="layout">
+    <!-- Sidebar: projects -->
+    <aside class="sidebar">
+      <h2>Projects</h2>
+      <ul id="project-list"></ul>
+      <form id="project-form" class="inline-form">
+        <input id="project-name" placeholder="New project…" maxlength="60" required>
+        <input id="project-color" type="color" value="#667eea" title="Project color">
+        <button type="submit">+</button>
+      </form>
+    </aside>
+
+    <main class="main">
+      <!-- Timer bar -->
+      <section class="timer-bar">
+        <div class="timer-display">
+          <div id="timer-time">00:00:00</div>
+          <div id="timer-label">No timer running</div>
+        </div>
+        <div class="timer-controls">
+          <select id="timer-task"><option value="">— Whole project —</option></select>
+          <input id="timer-note" placeholder="What are you working on?" maxlength="120">
+          <button id="timer-btn" class="btn-start">▶ Start</button>
+        </div>
+      </section>
+
+      <!-- Project header -->
+      <section class="project-head">
+        <div>
+          <h1 id="project-title">Loading…</h1>
+          <div id="project-meta" class="muted"></div>
+        </div>
+        <div class="project-actions">
+          <button id="rename-project" class="ghost">Rename</button>
+          <button id="delete-project" class="ghost danger">Delete</button>
+        </div>
+      </section>
+
+      <!-- Kanban -->
+      <section class="board" id="board">
+        <div class="column" data-status="todo">
+          <div class="col-head"><span>📝 To Do</span><span class="count"></span></div>
+          <div class="cards"></div>
+          <button class="add-card">+ Add task</button>
+        </div>
+        <div class="column" data-status="in_progress">
+          <div class="col-head"><span>🚧 In Progress</span><span class="count"></span></div>
+          <div class="cards"></div>
+          <button class="add-card">+ Add task</button>
+        </div>
+        <div class="column" data-status="review">
+          <div class="col-head"><span>👀 Review</span><span class="count"></span></div>
+          <div class="cards"></div>
+          <button class="add-card">+ Add task</button>
+        </div>
+        <div class="column" data-status="done">
+          <div class="col-head"><span>✅ Done</span><span class="count"></span></div>
+          <div class="cards"></div>
+          <button class="add-card">+ Add task</button>
+        </div>
+      </section>
+
+      <!-- Time log -->
+      <section class="log">
+        <h2>Time log</h2>
+        <table>
+          <thead><tr><th>Task</th><th>Note</th><th>Started</th><th>Duration</th><th></th></tr></thead>
+          <tbody id="entries"></tbody>
+        </table>
+      </section>
+    </main>
+  </div>
+
+  <!-- Task modal -->
+  <dialog id="task-modal">
+    <form id="task-form" method="dialog">
+      <h3 id="task-modal-title">New task</h3>
+      <label>Title<input id="task-title" required maxlength="120"></label>
+      <label>Description<textarea id="task-desc" rows="3"></textarea></label>
+      <label>Priority
+        <select id="task-priority">
+          <option value="low">Low</option>
+          <option value="medium" selected>Medium</option>
+          <option value="high">High</option>
+        </select>
+      </label>
+      <div class="modal-actions">
+        <button type="button" id="task-delete" class="ghost danger">Delete</button>
+        <span class="spacer"></span>
+        <button type="button" id="task-cancel" class="ghost">Cancel</button>
+        <button type="submit" class="primary">Save</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div id="toast"></div>
+  <script src="script.js"></script>
+</body>
+</html>
